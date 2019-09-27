@@ -2,8 +2,8 @@ package edu.hubu.learn.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.hubu.learn.entity.User;
+import edu.hubu.learn.entity.Blog;
 
-public interface UserDao extends JpaRepository<User, Long> {
+public interface BlogDao extends JpaRepository<Blog, Long> {
 
 }
