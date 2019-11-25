@@ -1,17 +1,3 @@
-<html>
-<head></head>
-<body>
-<table>
-<#list blogs as blog1>
-<tr>
-<td>${blog1.username}</td>
-<td>${blog1.password}</td>
-</tr>
-</#list>
-</table>
-</body>
-</html>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -36,27 +22,19 @@
     <div class="row">
       <div class="col-md-4">
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation" class="active"><a href="/blog/list">列表</a></li>
+          <li role="presentation"><a href="/blog/list">列表</a></li>
           <li role="presentation"><a href="/blog/add">新增</a></li>
-          <li role="presentation"><a href="/blog/search">搜索</a></li>
+          <li role="presentation" class="active"><a href="#">搜索</a></li>
         </ul>
       </div>
       <div class="col-md-8">      
-        <table class="table table-hover">
-          <thead>
-          <th>ID</th><th>名称</th><th>密码</th><th>头像</th><th>删除</th><th>修改</th><th>头像</th>
-          </thead>
-          <tbody>
-          <#list blogs as blog>
-          <tr>
-          <td>${blog.id}</td><td>${blog.username}</td><td>${blog.password}</td><td>${blog.avatar}</td>
-          <td><a href="/blog/delete/${blog.id}">删除</a></td>
-          <td><a href="/blog/modify/${blog.id}">修改</a></td>
-          <td><a href="/blog/add_avatar/${blog.id}">上传</a></td>
-          </tr>
-          </#list>
-          </tbody>
-        </table>
+        <form action="/blog/do_search" method="get">
+            <div class="form-group">
+                <label for="keyword">关键词</label>
+                <input type="text" class="form-control" id="keyword" name="keyword" placeholder="请输入搜索关键词">
+            </div>
+            <button type="submit" class="btn btn-default">确认</button>
+        </form>
       </div>
     </div>
   </div>

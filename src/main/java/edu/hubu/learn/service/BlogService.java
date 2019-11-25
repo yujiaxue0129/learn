@@ -2,7 +2,12 @@ package edu.hubu.learn.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import edu.hubu.learn.dao.BlogDao;
@@ -18,6 +23,34 @@ public class BlogService {
     }
 
     public List<Blog> getBlogs() {
-        return blogDao.findAll();
+        return blogDao.findAll(new Sort(Direction.DESC, "id"));
     }
+
+    public List<Blog> searchUsers(String keyword){
+        Blog blog =new Blog();
+        blog.setUsername(keyword);
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("username", match->match.contains());
+        Example<Blog> example = Example.of(blog, matcher);
+        Sort sort = new Sort(Direction.DESC, "id");
+        return blogDao.findAll(example, sort);
+        }
+
+    public Blog addBlog(Blog blog){
+        return blogDao.save(blog);
+    }
+
+    public void deleteBlog(Long id){
+        blogDao.deleteById(id);
+    }
+
+    public void deleteBlog(Blog blog){
+        blogDao.save(blog);
+    }
+
+	public void modifyBlog(Blog blog) {
+	}
+
+	public List<Blog> searchBlog(String keyword) {
+		return null;
+	}
 }
