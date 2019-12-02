@@ -120,6 +120,7 @@ public class BlogController {
             blog.setAvatar(fileName);
             blogService.modifyBlog(blog);
         } catch (Exception e) {
+            
             log.error("upload avatar error", e.getMessage());
         }
         return new ModelAndView("redirect:/user/list");
